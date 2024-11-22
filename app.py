@@ -20,26 +20,26 @@ def classification(image_number):
 
 # st.image("sunrise.jpg", caption="Sunrise by the mountains")
 
-st.sidebar.image("Histological_images/image.png", use_column_width=True)
+st.sidebar.image("image.png", use_column_width=True)
 
 # # Using object notation
 # add_selectbox = st.sidebar.selectbox(
 #     "Прошли ли Вы осмотр у врача?",
 #     ("Да", "Нет", "Планирую")
 # )
-st.sidebar.write("Набор открытых данных **Breast Histopathology Images**.")
+st.sidebar.write("Open source dataset **Breast Histopathology Images**.")
 
 st.sidebar.write(
-    "Исходный набор данных состоял из 162 слайд-изображений образцов (РМЖ), отсканированных при 40-кратном увеличении. Из этого было извлечено 277 524 участка размером 50 x 50 (198 738 IDC-отрицательных и 78 786 положительных).")
+    "The dataset consists of 277,524 50x50 pixel RGB digital image patches that were derived from 162 H&E-stained breast histopathology samples.")
 
-st.title("Рак молочной железы на основе гистопатологических данных")
+st.title("Breast cancer classification task on histopathological data")
 st.write("""
-         **Загрузите гистопатологическое изображение ткани молочной железы**, и приложение сделает прогноз, указывающий, обнаружен ли в ней рак (`1`) или нет (`0`).
+         **Upload a histopathological image of breast tissue**, and the app will make a prediction indicating whether cancer is detected in it (`1`) or not (`0`).
                                                                                                                                                               """)
 col1, col2, col3 = st.columns([1, 2, 1])
 
 # File uploader allows user to upload multiple images
-uploaded_files = st.file_uploader("Выберите файл...", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Upload file...", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
 if uploaded_files:
     for uploaded_file in uploaded_files:
@@ -54,22 +54,22 @@ if uploaded_files:
             # Resize the image for display
             image = image.resize((200, 200))
 
-            st.image(image, caption=f'Загруженное изображение #{image_number}', use_column_width=True)
+            st.image(image, caption=f'Uploaded image #{image_number}', use_column_width=True)
 
             st.write("")
 
-            with st.spinner('Пожалуйста подождите...'):
+            with st.spinner('Please wait...'):
                 time.sleep(4)
 
             predicted_class, probability = classification(image_number)
 
             # Display the result
             if predicted_class == 1:
-                st.success(f"**Прогноз для картинки #{image_number}: 1 (Рак обнаружен)**")
-                st.write(f"**Вероятность:** {probability * 100:.2f}%")
+                st.success(f"**Predicted class #{image_number}: 1 (Cancer is detected)**")
+                st.write(f"**Accuracy:** {probability * 100:.2f}%")
             else:
-                st.info(f"**Прогноз для картинки #{image_number}: 0 (Рак не обнаружен)**")
-                st.write(f"**Вероятность:** {probability * 100:.2f}%")
+                st.info(f"** Predicted class #{image_number}: 0 (Cancer is not detected)**")
+                st.write(f"**Accuracy:** {probability * 100:.2f}%")
 
             st.write("---")
 
