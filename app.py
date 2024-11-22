@@ -20,7 +20,7 @@ def classification(image_number):
 
 # st.image("sunrise.jpg", caption="Sunrise by the mountains")
 
-st.sidebar.image("image.png", use_column_width=True)
+st.sidebar.image("Histological_images/image.png", use_column_width=True)
 
 # # Using object notation
 # add_selectbox = st.sidebar.selectbox(
