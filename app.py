@@ -20,12 +20,12 @@ def classification(image_number):
 
 # st.image("sunrise.jpg", caption="Sunrise by the mountains")
 
-st.sidebar.image("image.png", use_column_width=True)
+st.sidebar.image("Histological_images/image.png", use_column_width=True)
 
 # # Using object notation
 # add_selectbox = st.sidebar.selectbox(
-#     "Прошли ли Вы осмотр у врача?",
-#     ("Да", "Нет", "Планирую")
+#     "Have you been examined by a doctor??",
+#     ("Yes", "No", "Planning")
 # )
 st.sidebar.write("Open source dataset **Breast Histopathology Images**.")
 
